@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Інструкція для користувачів системи Primero / CPIMS+</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f4f6f9; color: #2c3e50; line-height: 1.6; }
+
+  .cover {
+    background: linear-gradient(135deg, #1a5276 0%, #2e86c1 100%);
+    color: white; padding: 60px 40px; text-align: center;
+  }
+  .cover h1 { font-size: 2em; font-weight: 700; margin-bottom: 12px; }
+  .cover p { font-size: 1.05em; opacity: 0.88; max-width: 700px; margin: 8px auto 0; }
+  .cover .meta { margin-top: 20px; font-size: 0.88em; opacity: 0.7; }
+
+  .toc {
+    background: white; max-width: 880px; margin: 28px auto 0;
+    border-radius: 10px; padding: 26px 30px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .toc h2 { font-size: 1.05em; color: #1a5276; border-bottom: 2px solid #d6eaf8; padding-bottom: 8px; margin-bottom: 14px; }
+  .toc ul { list-style: none; }
+  .toc li { margin-bottom: 7px; }
+  .toc a { color: #2e86c1; text-decoration: none; font-size: 0.91em; }
+  .toc a:hover { text-decoration: underline; }
+  .toc .role { font-size: 0.78em; color: #7f8c8d; margin-left: 8px; background: #eaf4fb; border-radius: 3px; padding: 1px 6px; }
+
+  .alert-box {
+    max-width: 880px; margin: 20px auto 0;
+    background: #fff8e1; border-left: 5px solid #f39c12;
+    border-radius: 8px; padding: 18px 22px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+  .alert-box h3 { color: #b7770d; font-size: 1em; margin-bottom: 8px; }
+  .alert-box p { font-size: 0.91em; color: #5d4e00; margin-bottom: 6px; }
+  .alert-box .warn { margin-top: 10px; font-size: 0.88em; color: #7f5000; border-top: 1px solid #f0d080; padding-top: 10px; }
+
+  .alert-box-red {
+    max-width: 880px; margin: 20px auto 0;
+    background: #fdf2f2; border-left: 5px solid #e74c3c;
+    border-radius: 8px; padding: 18px 22px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  }
+  .alert-box-red h3 { color: #c0392b; font-size: 1em; margin-bottom: 8px; }
+  .alert-box-red p { font-size: 0.91em; color: #5d2020; margin-bottom: 6px; }
+
+  .content { max-width: 880px; margin: 0 auto; padding: 16px 14px 60px; }
+
+  .section-header {
+    color: white; padding: 12px 22px; border-radius: 8px;
+    margin: 32px 0 16px; font-size: 0.95em; font-weight: 700;
+    letter-spacing: 0.03em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-header.blue { background: linear-gradient(90deg, #2e86c1, #1a5276); }
+  .section-header.teal { background: linear-gradient(90deg, #148f77, #0e6655); }
+  .section-header.purple { background: linear-gradient(90deg, #7d3c98, #6c3483); }
+  .section-header.orange { background: linear-gradient(90deg, #ca6f1e, #a04000); }
+  .section-header.red { background: linear-gradient(90deg, #c0392b, #922b21); }
+
+  .section-header .num {
+    background: rgba(255,255,255,0.25); border-radius: 50%;
+    width: 28px; height: 28px; min-width: 28px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8em;
+  }
+
+  .step {
+    background: white; border-radius: 10px; margin-bottom: 18px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.07); overflow: hidden;
+  }
+  .step.blue { border-left: 4px solid #2e86c1; }
+  .step.teal { border-left: 4px solid #148f77; }
+  .step.purple { border-left: 4px solid #7d3c98; }
+  .step.orange { border-left: 4px solid #ca6f1e; }
+  .step.red { border-left: 4px solid #c0392b; }
+
+  .step-header {
+    padding: 14px 20px 10px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .step-badge {
+    color: white; border-radius: 50%;
+    width: 32px; height: 32px; min-width: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85em; font-weight: 700; margin-top: 2px;
+  }
+  .step-badge.blue { background: #2e86c1; }
+  .step-badge.teal { background: #148f77; }
+  .step-badge.purple { background: #7d3c98; }
+  .step-badge.orange { background: #ca6f1e; }
+  .step-badge.red { background: #c0392b; }
+
+  .step-titles { flex: 1; }
+  .step-action { font-weight: 700; font-size: 1em; color: #17202a; margin-bottom: 4px; }
+  .step-desc { font-size: 0.9em; color: #5d6d7e; line-height: 1.55; }
+  .step-img { padding: 0 20px 16px 66px; }
+  .step-img img { width: 100%; max-width: 680px; border-radius: 6px; border: 1px solid #dce6ef; display: block; }
+
+  .info-note {
+    background: #eaf4fb; border-radius: 6px; padding: 10px 14px;
+    margin: 6px 0 6px 0; font-size: 0.87em; color: #1a5276;
+    border-left: 3px solid #2e86c1;
+  }
+
+  .print-btn {
+    position: fixed; bottom: 28px; right: 28px;
+    background: #2e86c1; color: white; border: none;
+    border-radius: 50px; padding: 12px 24px; font-size: 0.95em;
+    cursor: pointer; box-shadow: 0 4px 16px rgba(46,134,193,0.4);
+    z-index: 100; font-family: inherit;
+  }
+  .print-btn:hover { background: #1a5276; }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .print-btn { display: none; }
+    .cover, .section-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .step { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+    .toc { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>Інструкція для користувачів системи Primero / CPIMS+</h1>
+  <p>Повний цикл управління кейсом дитини — від реєстрації до закриття.<br>
+  Охоплює ролі: Кейс-менеджер КЦ · Проєктний координатор · Кейс-менеджер партнерської організації · КМ УМПД / субгарантер</p>
+  <div class="meta">Координаційний центр з розвитку сімейного виховання та догляду дітей &nbsp;·&nbsp; UNICEF Ukraine</div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📋 Зміст</h2>
+  <ul>
+    <li><a href="#s1">🔵 Кроки 1–9 &nbsp;·&nbsp; Вхід та створення нового кейсу</a></li>
+    <li><a href="#s2">🔵 Кроки 10–13 &nbsp;·&nbsp; Подробиці про дитину</a></li>
+    <li><a href="#s3">🔵 Кроки 14–24 &nbsp;·&nbsp; Інформована згода</a></li>
+    <li><a href="#s4">🔵 Кроки 25–30 &nbsp;·&nbsp; Оцінювання</a></li>
+    <li><a href="#s5">🔵 Кроки 31–44 &nbsp;·&nbsp; Індивідуальний план заходів</a></li>
+    <li><a href="#s6">🔵 Кроки 45–58 &nbsp;·&nbsp; Надання послуг та моніторинг</a></li>
+    <li><a href="#s7">🔵 Кроки 59–72 &nbsp;·&nbsp; Деталі закриття кейсу</a></li>
+    <li><a href="#s8">🔵 Кроки 73–78 &nbsp;·&nbsp; Створення інциденту</a></li>
+    <li><a href="#s9">🟢 Кроки 79–92 &nbsp;·&nbsp; Роль: Проєктний координатор партнерської організації</a></li>
+    <li><a href="#s10">🟣 Кроки 93–115 &nbsp;·&nbsp; Роль: Кейс-менеджер партнерської організації</a></li>
+    <li><a href="#s11">🟠 Кроки 116–150 &nbsp;·&nbsp; Роль: Кейс-менеджер УМПД / субгарантер (Проєкт Реінтеграції)</a></li>
+    <li><a href="#s12">🔴 Кроки 151–156 &nbsp;·&nbsp; Закриття роботи над кейсом / Закриття супроводу</a></li>
+  </ul>
+</div>
+
+<!-- Security alert -->
+<div class="alert-box" style="max-width:880px; margin: 20px auto 0;">
+  <h3>🔐 Безпека та конфіденційність</h3>
+  <p>Уся інформація, яку ви вносите до системи, є <strong>суворо конфіденційною</strong>. CPIMS+ забезпечує захист персональних даних дітей та їхніх сімей відповідно до законодавства України та міжнародних стандартів захисту даних.</p>
+  <p>Кожен користувач має індивідуальний обліковий запис із визначеними правами доступу — ви бачите лише ту інформацію, яка необхідна для виконання ваших посадових обов'язків.</p>
+  <div class="warn">⚠️ <strong>Нагадування.</strong> Забороняється передавати свої облікові дані (логін і пароль) іншим особам. У разі підозри на несанкціонований доступ до вашого облікового запису — негайно повідомте адміністратора системи.</div>
+</div>
+
+<div class="content">
+
+<!-- ===== SECTION 1 ===== -->
+<div class="section-header blue" id="s1"><span class="num">1</span> ВХІД ТА СТВОРЕННЯ НОВОГО КЕЙСУ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">1</div><div class="step-titles">
+  <div class="step-action">Перейдіть на сторінку входу</div>
+  <div class="step-desc">Відкрийте браузер і перейдіть за адресою <strong>https://demo-childcareua.primero.org/v2/login</strong>. Введіть своє ім'я користувача та пароль у відповідні поля, потім натисніть кнопку «Увійти в обліковий запис до Демо». У разі забутого пароля — скористайтесь посиланням «Забули свій пароль?».</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/0e13f1ce-cc57-4d95-97b7-c26289b4f0df/ascreenshot_39e9f51183dc43f3840eb1616b7c5369_text_export.jpeg" alt="Крок 1"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">2</div><div class="step-titles">
+  <div class="step-action">Натисніть «Нове»</div>
+  <div class="step-desc">Після входу до системи ви потрапите на головну сторінку зі списком кейсів. Знайдіть та натисніть кнопку <strong>«+ Нове»</strong> у верхньому правому куті, щоб розпочати створення нового кейсу дитини.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8658fc3f-ffb0-44da-b877-5878cda38d63/ascreenshot_b5df35496a6543aeaf3bb85633ac2805_text_export.jpeg" alt="Крок 2"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">3</div><div class="step-titles">
+  <div class="step-action">Натисніть «Пропустити і створити новий кейс»</div>
+  <div class="step-desc">Система відкриє діалогове вікно перевірки дублікатів — захист від повторного створення запису для тієї самої дитини. Рекомендується спочатку здійснити пошук за ПІБ або ІПН. Якщо запис не знайдено — натисніть <strong>«Пропустити і створити новий кейс»</strong>.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/9a4b9139-8c35-4898-bdd7-16c1fb293de9/ascreenshot_68233765e10b4c7a98315e2d74b73919_text_export.jpeg" alt="Крок 3"/></div></div>
+
+<!-- ===== SECTION 2 ===== -->
+<div class="section-header blue" id="s2"><span class="num">2</span> ПОДРОБИЦІ ПРО ДИТИНУ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">4</div><div class="step-titles">
+  <div class="step-action">Клікніть на поле «ПІБ *»</div>
+  <div class="step-desc">Знайдіть поле <strong>«ПІБ *»</strong> у розділі «Подробиці про дитину». Зірочка (*) означає обов'язкове поле. Введіть повне прізвище, ім'я та по батькові дитини кирилицею у форматі: Прізвище Ім'я По-батькові.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/ab9c6bc7-c323-4f90-95c5-99339305fa6a/ascreenshot_8e2a43bbdd0b49799436d9cc66e0bbfa_text_export.jpeg" alt="Крок 4"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">5</div><div class="step-titles">
+  <div class="step-action">Заповніть ідентифікаційні поля</div>
+  <div class="step-desc">Введіть <strong>ІПН/РНОКПП</strong> — 10-значний числовий код. У полі <strong>«Унікальний номер ЄДДР»</strong> вкажіть 8-значний код з Єдиного демографічного реєстру. Ці дані критично важливі для ідентифікації дитини та запобігання дублюванню записів у системі.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/acba6a32-73f7-45dc-bf20-790bb8ef4333/ascreenshot_1b22b641e0634dd4b51c3387c33d043f_text_export.jpeg" alt="Крок 5"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">6</div><div class="step-titles">
+  <div class="step-action">Оберіть рік народження «2016»</div>
+  <div class="step-desc">Клікніть на поле <strong>«Дата народження *»</strong> — відкриється календар. Оберіть рік «2016» (або інший відповідний), потім місяць і конкретну дату. Вік розраховується системою автоматично.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7800aef8-d98c-4703-b0c5-a44590877cf3/ascreenshot_d2ab56f4ba0f45c486f9dfe40218d52f_text_export.jpeg" alt="Крок 6"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">7</div><div class="step-titles">
+  <div class="step-action">Клікніть на поле «Стать *»</div>
+  <div class="step-desc">Клікніть на поле <strong>«Стать *»</strong> для відкриття випадного списку. Вказівка статі є обов'язковою — вона впливає на статистику та формування звітності у системі.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/4546ef0b-b82a-44f9-8783-7b6da359b0ba/ascreenshot_c5e99fa28bf545c5a38f4b3775bfcb6d_text_export.jpeg" alt="Крок 7"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">8</div><div class="step-titles">
+  <div class="step-action">Оберіть «Жіноча»</div>
+  <div class="step-desc">Зі списку варіантів («Чоловіча», «Жіноча») оберіть відповідний. У даному прикладі обирається <strong>«Жіноча»</strong>.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3a64f31c-e8a5-452e-b405-1e77d30c2d28/ascreenshot_7cd85cd6a87e4893a70688b3ffae19a3_text_export.jpeg" alt="Крок 8"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">9</div><div class="step-titles">
+  <div class="step-action">Оберіть «Переміщені з ТОТ»</div>
+  <div class="step-desc">У полі <strong>«Статус дитини *»</strong> оберіть відповідний статус. Доступні варіанти: «Депортовані», «Переміщені з ТОТ» (тимчасово окупована територія), «Переміщені з РФ». Оберіть <strong>«Переміщені з ТОТ»</strong>, якщо дитина є вимушеним переселенцем з окупованих територій.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1d8bf152-7c12-4006-a886-a62dfc206d82/ascreenshot_bd26913849d94045ac2450034c2c4694_text_export.jpeg" alt="Крок 9"/></div></div>
+
+<!-- ===== SECTION 3 ===== -->
+<div class="section-header blue" id="s3"><span class="num">3</span> ІНФОРМОВАНА ЗГОДА</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">10</div><div class="step-titles">
+  <div class="step-action">Перейдіть до «Інформована згода та згода дитини»</div>
+  <div class="step-desc">У лівому бічному меню клікніть <strong>«Інформована згода та згода дитини (неповнолітнього)»</strong>. Розділ фіксує правові підстави для збору та обробки персональних даних відповідно до законодавства України про захист дітей.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/eb5c8e78-c4c8-4a27-b467-77be92dff87c/ascreenshot_445efee2b199479d9bb514f359e028b0_text_export.jpeg" alt="Крок 10"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">11</div><div class="step-titles">
+  <div class="step-action">Оберіть «Забезпечення найкращих інтересів дитини»</div>
+  <div class="step-desc">У полі «Підстави для збору та зберігання інформації» відкрийте список і оберіть правову підставу. Варіанти: «Захист життєво важливих інтересів», <strong>«Забезпечення найкращих інтересів дитини»</strong>, «Виконання вимог законодавства», «Надання соціальної, психологічної та правової допомоги». Можна обрати кілька.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/d62a5d6a-2537-4d8b-92cd-a7342ccf66ef/ascreenshot_3cb6eeddf30043f999fd8ca069ad2709_text_export.jpeg" alt="Крок 11"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">12</div><div class="step-titles">
+  <div class="step-action">Оберіть «Дитина» у полі «Згода отримана від»</div>
+  <div class="step-desc">У полі <strong>«Згода отримана від»</strong> вкажіть, хто надав згоду: «Дитина» (якщо вона усвідомлює згоду) або «Опікун» (якщо згоду надає законний представник). Після вибору з'явиться чекбокс підтвердження — позначте його.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/ecce239e-6365-4500-bdb7-0b36a330a7c4/ascreenshot_f989d23d460a4838adc9e44b00a9f9e0_text_export.jpeg" alt="Крок 12"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">13</div><div class="step-titles">
+  <div class="step-action">Заповніть поле «Нотатки»</div>
+  <div class="step-desc">У полі <strong>«Нотатки»</strong> зафіксуйте обставини отримання згоди: коли, де та як, чи були присутні свідки, будь-які особливі умови. Також позначте чекбокс «Так», щоб підтвердити готовність ділитись інформацією з іншими постачальниками послуг.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/d5b7d032-2b0c-467d-bab4-41c026b0d2be/ascreenshot_76267dc865544a0992e73b7509a144cf_text_export.jpeg" alt="Крок 13"/></div></div>
+
+<!-- ===== SECTION 4 ===== -->
+<div class="section-header blue" id="s4"><span class="num">4</span> ОЦІНЮВАННЯ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">14</div><div class="step-titles">
+  <div class="step-action">Перейдіть до розділу «Оцінювання»</div>
+  <div class="step-desc">Клікніть на розділ <strong>«Оцінювання»</strong> в лівому меню. Містить підрозділи: «Деталі оцінювання», «Інформація про стан здоров'я», «Дані про батьків», «Екстрене розміщення», «Надання термінової допомоги» та інші. Тут фіксуються потреби та ризики дитини.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/64b2578a-b40f-4569-8157-58cf102cf318/ascreenshot_08a6dc19e2df4f59b88c0e273873b15e_text_export.jpeg" alt="Крок 14"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">15</div><div class="step-titles">
+  <div class="step-action">Оберіть дату оцінювання — натисніть «9»</div>
+  <div class="step-desc">У календарі клікніть на число <strong>«9»</strong>, щоб встановити дату проведення оцінювання. Переконайтесь, що обрані правильний місяць і рік. Після натискання дата збережеться у форматі ДД-МММ-РРРР.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1d69cbca-7db0-4f8c-8a49-5104f2809ee1/ascreenshot_797524c459874b54808f230f92a15216_text_export.jpeg" alt="Крок 15"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">16</div><div class="step-titles">
+  <div class="step-action">Клікніть на іконку календаря</div>
+  <div class="step-desc">Для полів типу «Дата повернення» або «Дата підготовки плану» клікніть на іконку календаря праворуч від поля, щоб відкрити засіб вибору дати.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/135e0212-fdd6-402c-8b26-8ba04ab06986/ascreenshot_85133d778082400a878a0c5d0ae96f81_text_export.jpeg" alt="Крок 16"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">17</div><div class="step-titles">
+  <div class="step-action">Перейдіть до «Інформація про стан здоров'я»</div>
+  <div class="step-desc">Клікніть на підрозділ <strong>«Інформація про стан здоров'я дитини, наявність інвалідності, дані про житло»</strong>. Тут вказуються хронічні захворювання, наявність інвалідності (група), поточні житлові умови та адреса проживання.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/a79115a3-9e93-4e9a-900d-c763ee0f02df/ascreenshot_75af107581a7465da9065f02f69600d1_text_export.jpeg" alt="Крок 17"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">18</div><div class="step-titles">
+  <div class="step-action">Натисніть «+ Додати» для даних про батьків</div>
+  <div class="step-desc">У підрозділі <strong>«Дані про батьків, інших законних представників»</strong> натисніть «+ Додати». Відкриється форма: тип родинного зв'язку, ПІБ, унікальний номер ЄДДР, адреса реєстрації, номер телефону, електронна пошта.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3de3c959-a448-4d78-9184-39ce908b088e/ascreenshot_900a637befc54109a5797a9dfb16889f_text_export.jpeg" alt="Крок 18"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">19</div><div class="step-titles">
+  <div class="step-action">Заповніть поле «Адреса реєстрації»</div>
+  <div class="step-desc">Введіть повну адресу реєстрації батька/матері або законного представника. Якщо адреса фактичного проживання відрізняється від реєстрації — вкажіть це в додаткових полях. Також заповніть номер телефону для оперативного зв'язку.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/b612d1e3-907e-4cb5-891c-c1189ea6d4dc/ascreenshot_f7d158f2ac8343bea7f4780e13e819bb_text_export.jpeg" alt="Крок 19"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">20</div><div class="step-titles">
+  <div class="step-action">Натисніть «Додати» для збереження даних представника</div>
+  <div class="step-desc">Після заповнення всіх полів натисніть зелену кнопку <strong>«✓ Додати»</strong>. Для скасування — «× Скасувати». Можна додати кількох представників, натискаючи «+ Додати» повторно.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/4ac9ee41-48ac-49ae-a7ea-527c2fecd07e/ascreenshot_700192edea664404b4a9ee4de0f94959_text_export.jpeg" alt="Крок 20"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">21</div><div class="step-titles">
+  <div class="step-action">Позначте «так» у полі потреби в екстреному розміщенні</div>
+  <div class="step-desc">У підрозділі <strong>«Екстрене розміщення»</strong> позначте чекбокси «так» для: «Потреба в екстреному розміщенні», «Потреба в тимчасовому влаштуванні». Нижче — блок базових матеріальних потреб: харчування, одяг, взуття тощо.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/e64d51c7-f6c9-4335-aa0e-2926bf4c4035/ascreenshot_e91c1928786c4a67a0dd0e8421d0f151_text_export.jpeg" alt="Крок 21"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">22</div><div class="step-titles">
+  <div class="step-action">Вставте текст (Cmd+V)</div>
+  <div class="step-desc">Якщо є попередньо підготовлений текст — клікніть на поле «Додаткова інформація» та натисніть <strong>Cmd+V</strong> (Mac) або <strong>Ctrl+V</strong> (Windows) для вставки. Це зручно при заповненні великих обсягів інформації.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/2d347f92-4ab1-4bcc-8087-ed3056b47e90/ascreenshot_d1847cd060684ebaace209d76c4599a4_text_export.jpeg" alt="Крок 22"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">23</div><div class="step-titles">
+  <div class="step-action">Перейдіть до «Надання термінової матеріально-побутової допомоги»</div>
+  <div class="step-desc">Клікніть на підрозділ <strong>«Надання термінової матеріально-побутової допомоги»</strong>. Тут фіксується: одноразова грошова допомога від держави (сума), додаткова допомога від партнерів, надання продуктів, засобів гігієни, покриття транспортних витрат.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/fa208a15-2879-4157-867b-5b2c0073e5f7/ascreenshot_29c39c9924eb41a19e10ba5a0acde26a_text_export.jpeg" alt="Крок 23"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">24</div><div class="step-titles">
+  <div class="step-action">Натисніть «Зберегти»</div>
+  <div class="step-desc">Після заповнення всіх полів натисніть <strong>«✓ Зберегти»</strong> у верхньому правому куті. Система збереже дані та присвоїть кейсу унікальний ідентифікатор. З'явиться повідомлення про успішне збереження.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7e764d8a-c245-409e-8684-a97d1205c24d/ascreenshot_7eb85ead729744229082e414189156d7_text_export.jpeg" alt="Крок 24"/></div></div>
+
+<!-- ===== SECTION 5 ===== -->
+<div class="section-header blue" id="s5"><span class="num">5</span> ІНДИВІДУАЛЬНИЙ ПЛАН ЗАХОДІВ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">25</div><div class="step-titles">
+  <div class="step-action">Перейдіть до «Індивідуальний план заходів»</div>
+  <div class="step-desc">Клікніть на розділ <strong>«Індивідуальний план заходів»</strong> у лівому меню. Тут визначаються цілі, категорії потреб, терміни супроводу та відповідальні за виконання.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/cbbb6758-426f-4931-983f-38a092e2c043/ascreenshot_d649af17214e4d129506001dd47f11a0_text_export.jpeg" alt="Крок 25"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">26</div><div class="step-titles">
+  <div class="step-action">Натисніть «Редагувати»</div>
+  <div class="step-desc">Натисніть кнопку <strong>«✎ Редагувати»</strong> у верхньому правому куті. Система перейде в режим редагування, де стануть доступними всі поля форми.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/0a36580d-e197-4663-96b9-6d2d1a0204e5/ascreenshot_31ee070f3f93424a855e26f5953a1dae_text_export.jpeg" alt="Крок 26"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">27</div><div class="step-titles">
+  <div class="step-action">Оберіть «Категорію потреб»</div>
+  <div class="step-desc">У полі <strong>«Категорія потреб»</strong> оберіть усі актуальні категорії: «Медицина та охорона здоров'я», «Правова допомога», «Освітні потреби», «Транспортне забезпечення», «Забезпечення проживанням, харчуванням, одягом», «Інше». Можна обрати кілька одночасно.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/5696ee13-25c3-448a-9c7e-26bfe5bf0bed/ascreenshot_6772c4c79a7d41b898a9372d55d3a677_text_export.jpeg" alt="Крок 27"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">28</div><div class="step-titles">
+  <div class="step-action">Заповніть поле «Зазначте, якщо інше»</div>
+  <div class="step-desc">Якщо серед стандартних категорій відсутня потрібна — оберіть «Інше» та заповніть поле <strong>«Зазначте, якщо інше»</strong> з конкретною назвою потреби. Також встановіть дату створення плану та термін супроводу (наприклад, 3 місяці).</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/a46b616d-f35a-4b43-99bf-dc139a0bb027/ascreenshot_d818656b1bd94de5930826407a266c78_text_export.jpeg" alt="Крок 28"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">29</div><div class="step-titles">
+  <div class="step-action">Натисніть «Запросити ухвалення»</div>
+  <div class="step-desc">Натисніть кнопку меню <strong>«⋮»</strong> (три крапки) та оберіть «Запросити ухвалення». Ця дія надсилає план на погодження керівнику. Статус плану зміниться на «Очікується ухвалення», а керівник отримає сповіщення.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/670f90bb-931a-435a-be36-87c986032eb7/ascreenshot_24bf6b7f19b2472891d6a661b5f9ff1f_text_export.jpeg" alt="Крок 29"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">30</div><div class="step-titles">
+  <div class="step-action">Підтвердіть — натисніть «ОК»</div>
+  <div class="step-desc">У діалоговому вікні переконайтесь, що обрано <strong>«Case Plan»</strong>, та натисніть «✓ ОК». Система відобразить повідомлення про успішне оновлення та надсилання запиту на схвалення.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8b64a661-d7f5-402b-9c74-f4a0908add30/ascreenshot_512956f59f7b4c53b26080bd6a188b00_text_export.jpeg" alt="Крок 30"/></div></div>
+
+<!-- ===== SECTION 6 ===== -->
+<div class="section-header blue" id="s6"><span class="num">6</span> НАДАННЯ ПОСЛУГ ТА МОНІТОРИНГ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">31</div><div class="step-titles"><div class="step-action">Перейдіть до «Надання послуги та моніторинг»</div><div class="step-desc">Клікніть на розділ <strong>«Надання послуги та моніторинг»</strong>. Містить підрозділи: «Формування потреб та направлення на послуги КЦ», «Супровід КЦ: послуги поза системою», «Супровід надавачами послуг», «Моніторинг надання послуг».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/0ed60343-81d4-456a-a415-99b6c7f5e16b/ascreenshot_a6903699091b4632b1d696c8ef8b318d_text_export.jpeg" alt="Крок 31"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">32</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати»</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong> для переходу в режим редагування підрозділу «Формування потреб та направлення на послуги КЦ».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/777b8f62-ea66-4408-bc3a-693ef4127a5b/ascreenshot_3260c8a38d144993af8fbbce504bded5_text_export.jpeg" alt="Крок 32"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">33</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати»</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> для створення нової потреби або направлення на послугу.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/f23144b9-9741-4774-ba81-aad77f73f263/ascreenshot_1efe45e9089e484d9a789275b5983ac5_text_export.jpeg" alt="Крок 33"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">34</div><div class="step-titles"><div class="step-action">Оберіть «Тип послуги»</div><div class="step-desc">У полі <strong>«Тип послуги»</strong> оберіть зі списку: «Грошова підтримка», «Медична підтримка», «Посмішка — наявний пакет послуг», «Психосоціальна підтримка» тощо.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/12398a3b-ee2c-4b3b-a61a-428b1c88fc69/ascreenshot_11aeccfbcbe74dbd8f2d4f3a09db72da_text_export.jpeg" alt="Крок 34"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">35</div><div class="step-titles"><div class="step-action">Заповніть форму та натисніть «Додати»</div><div class="step-desc">Заповніть: «Виконавча агенція», «Назва постачальника послуг», «Регіон надання послуги», «Дата направлення», «Нотатки». Натисніть <strong>«✓ Додати»</strong>.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/db41001e-a6d9-42ef-9ebb-0c13b9da5dd0/ascreenshot_79214e30d99f4ec19a920c846ffe08ff_text_export.jpeg" alt="Крок 35"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">36</div><div class="step-titles"><div class="step-action">Натисніть «Перенаправити»</div><div class="step-desc">Після збереження запису натисніть кнопку <strong>«Перенаправити»</strong>, щоб офіційно надіслати направлення постачальнику послуг. Статус зміниться і отримувач отримає сповіщення.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8b294a42-dcbc-4eff-9993-accb020fcd5d/ascreenshot_eafc2130d13b4a8e8d24af47b4376d86_text_export.jpeg" alt="Крок 36"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">37</div><div class="step-titles"><div class="step-action">Підтвердіть перенаправлення</div><div class="step-desc">У вікні підтвердження перевірте: «Послуга», «Агенція», «Локація», «Отримувач», «Нотатки». Натисніть <strong>«✓ Перенаправити»</strong>. Система відобразить повідомлення про успішне направлення.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3509a38b-f7d0-46fa-980c-a8b10b4da95c/ascreenshot_ca5e01cf05464b27ae88fafc7be512ab_text_export.jpeg" alt="Крок 37"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">38</div><div class="step-titles"><div class="step-action">Перегляньте статус направлення</div><div class="step-desc">Після успішного направлення у списку з'явиться кнопка <strong>«Знову перенаправити»</strong> замість «Перенаправити» — це свідчить про активне направлення. Клікніть на запис для перегляду повних деталей.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/b9bc8867-a720-46da-aa3f-865322c56523/ascreenshot_c26f3ae0c58b41f7b6631dff350d9c1f_text_export.jpeg" alt="Крок 38"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">39</div><div class="step-titles"><div class="step-action">Перейдіть до «Супровід КЦ: послуги поза системою»</div><div class="step-desc">Клікніть на підрозділ <strong>«Супровід КЦ: послуги поза системою»</strong>. Тут реєструються послуги від організацій поза Primero — зовнішні медичні заклади, державні служби, громадські організації.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/daa3b7e7-20c2-40c8-b92b-bde894247984/ascreenshot_cc02858bf6314392a2fe900676803f64_text_export.jpeg" alt="Крок 39"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">40</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати»</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong> для переходу в режим редагування підрозділу послуг поза системою.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/338ee819-460a-4640-94d9-297a855823a9/ascreenshot_0d3dc5425976414e958f44b28750bcf3_text_export.jpeg" alt="Крок 40"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">41</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати»</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> для нового запису. Відкриється форма: «Послуги, що за межами системи», «Статус надання», «Дата здійснення заходу», «Відповідальна особа / Назва закладу», «Результати та/або перешкоди».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6e044131-646a-410a-9b15-77bb63f62fa4/ascreenshot_d3c8ec99e3034928ab93fe6d2201db97_text_export.jpeg" alt="Крок 41"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">42</div><div class="step-titles"><div class="step-action">Введіть результати послуги</div><div class="step-desc">У полі <strong>«Результати та/або перешкоди»</strong> введіть конкретний опис. Наприклад: «проведено консультацію із дерматологом, отримано рекомендації». Будьте конкретними — що зроблено, яких результатів досягнуто або які виникли перешкоди.</div></div></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">43</div><div class="step-titles"><div class="step-action">Натисніть «Додати»</div><div class="step-desc">Після заповнення всіх полів натисніть <strong>«✓ Додати»</strong> для збереження запису про послугу поза системою.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/bb8d66d0-5814-47a5-a340-7dca92476125/ascreenshot_fd4ab5ccc75b459987470064270ef9c8_text_export.jpeg" alt="Крок 43"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">44</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти»</div><div class="step-desc">Натисніть <strong>«✓ Зберегти»</strong> для збереження всіх доданих записів послуг.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/36ad0456-8981-495e-ab89-63271ea1994c/ascreenshot_5a48d651636c4931a71e584789c8d75a_text_export.jpeg" alt="Крок 44"/></div></div>
+
+<!-- ===== SECTION 7 ===== -->
+<div class="section-header blue" id="s7"><span class="num">7</span> ДОКУМЕНТИ, ФОТО ТА МОНІТОРИНГ ПОСЛУГ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">45</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати» в розділі «Інші документи»</div><div class="step-desc">Перейдіть до підрозділу <strong>«Інші документи»</strong> та натисніть «+ Додати». Тут прикріплюються документи до кейсу: акти обстеження, медичні довідки, рішення суду. Формати: PDF, DOC, DOCX, XLS, XLSX, JPG, PNG.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3fe43d78-1671-4559-b404-ffc48a91ee35/ascreenshot_57cd0febacb44a11b28984b8ed7993c2_text_export.jpeg" alt="Крок 45"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">46</div><div class="step-titles"><div class="step-action">Натисніть «Вибрати файл»</div><div class="step-desc">Клікніть <strong>«Вибрати файл»</strong> для відкриття діалогу вибору файлу на комп'ютері.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/ad1a2d3f-295a-4ae7-82c9-524ecfe5d1e6/ascreenshot_7b3e8bb9f8cf40bf8755ba06b010d37e_text_export.jpeg" alt="Крок 46"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">47</div><div class="step-titles"><div class="step-action">Вставте дані (Cmd+V)</div><div class="step-desc">Клікніть на поле «Коментарі» або «Назва документу» та натисніть <strong>Cmd+V / Ctrl+V</strong> для вставки тексту.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/082759ac-8a31-435e-9859-9528dce48e2c/ascreenshot_82f421cfcacc452ca7d2e8f8f2405d0f_text_export.jpeg" alt="Крок 47"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">48</div><div class="step-titles"><div class="step-action">Заповніть дані та натисніть «Зберегти»</div><div class="step-desc">Заповніть: «Це поточний документ?», <strong>«Назва документу»</strong>, «Дата документу», «Коментарі». Натисніть «✓ Зберегти».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/aad6ec16-9856-486a-8134-4d5ba35f0554/ascreenshot_276c431f558f43d89bdfd1eb9ebdbe94_text_export.jpeg" alt="Крок 48"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">49</div><div class="step-titles"><div class="step-action">Перейдіть до «Фото та аудіо»</div><div class="step-desc">Клікніть на підрозділ <strong>«Фото та аудіо»</strong>. Тут завантажуються фотографії дитини (PNG, JPEG, GIF) та аудіозаписи (MP3, M4A). Фото використовуються для ідентифікації дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3cccd0a8-1fe5-420e-8ad4-58f6c5340fdb/ascreenshot_27cd5e01159d4e978cfa7ccf002c161d_text_export.jpeg" alt="Крок 49"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">50</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати» у розділі Photos</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> у розділі «Photos» для завантаження нової фотографії.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1e23d548-13bf-4644-a902-2e193f14b98d/ascreenshot_441350c72c084c429f5cb5beecd3f116_text_export.jpeg" alt="Крок 50"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">51</div><div class="step-titles"><div class="step-action">Натисніть «Вибрати файл»</div><div class="step-desc">Клікніть <strong>«Вибрати файл»</strong> та оберіть фотографію на комп'ютері (PNG, JPEG або GIF).</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/967b3941-63cd-4448-8af2-31e77d31879e/ascreenshot_d9960e030f534363b17ad59e4e0b05fd_text_export.jpeg" alt="Крок 51"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">52</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти»</div><div class="step-desc">Натисніть <strong>«✓ Зберегти»</strong>. Мініатюра фото з'явиться у розділі Photos.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7dc2900e-8689-4ed1-a7b8-fbb686d63f3d/ascreenshot_297645e3e6ee460dab86c45201268b23_text_export.jpeg" alt="Крок 52"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">53</div><div class="step-titles"><div class="step-action">Перейдіть до «Моніторинг надання послуг»</div><div class="step-desc">Клікніть на підрозділ <strong>«Моніторинг надання послуг»</strong>. Тут реєструються всі контакти та комунікації з дитиною, сім'єю та постачальниками послуг.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/2712c3c2-b167-4e48-bcd3-0ad358103db4/ascreenshot_8c29b16c50174bf9945fa0d53a21ed19_text_export.jpeg" alt="Крок 53"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">54</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати»</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong>.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7f1d3d17-f22e-4a9b-9cfa-9ea7ff048739/ascreenshot_0e7f2ed4ef46455b970bba9707b52487_text_export.jpeg" alt="Крок 54"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">55</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати»</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> для нового запису моніторингу. Відкриється форма «МОНІТОРИНГ» для фіксації контакту.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/2117cd6c-e007-4aaf-8f15-136c2bab003c/ascreenshot_c58a44e1334e4ccab69395fa22899703_text_export.jpeg" alt="Крок 55"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">56</div><div class="step-titles"><div class="step-action">Оберіть «Миттєве повідомлення/SMS/WhatsApp»</div><div class="step-desc">У полі <strong>«Тип відстеження»</strong> оберіть тип комунікації: «Телефонний дзвінок», «Миттєве повідомлення/SMS/WhatsApp», «Імейл», «Відвідування додому», «Зустріч віч-на-віч» тощо.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/b5adf12e-1cfd-4e0e-ac46-4ba838360a68/ascreenshot_eb40ac5a83894057bbdf56a0aa4c80e8_text_export.jpeg" alt="Крок 56"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">57</div><div class="step-titles"><div class="step-action">Заповніть форму та натисніть «Додати»</div><div class="step-desc">Заповніть: «Дата відстеження», «Із ким відбулась комунікація», «Нотатки» (опис розмови), «Чи є необхідність подальшого спостереження?». Натисніть <strong>«✓ Додати»</strong>.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7acfcb37-6e04-44d5-becb-0c68d46be399/ascreenshot_b18828ae4a784da98e801e4eaf20d215_text_export.jpeg" alt="Крок 57"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">58</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти»</div><div class="step-desc">Натисніть <strong>«✓ Зберегти»</strong>. Запис з'явиться у списку з датою та типом відстеження.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6f742118-3b18-4e62-9840-feb457139644/ascreenshot_ba4b512ce3b14d53b718a33aba54e9d6_text_export.jpeg" alt="Крок 58"/></div></div>
+
+<!-- ===== SECTION 8 (CLOSURE) ===== -->
+<div class="section-header blue" id="s8-close"><span class="num">8a</span> ДЕТАЛІ ЗАКРИТТЯ КЕЙСУ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">59</div><div class="step-titles"><div class="step-action">Перейдіть до «Деталі закриття»</div><div class="step-desc">Клікніть на розділ <strong>«Деталі закриття»</strong>. Заповнюється при завершенні роботи з кейсом. Тут фіксуються дата закриття, причина та стан дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/f8ca8632-5a91-46f0-8793-2a9adf7369f9/ascreenshot_a9dab186179d41f3a34038887fe41941_text_export.jpeg" alt="Крок 59"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">60</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати»</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong> для переходу в режим редагування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/abaaa7e6-43b8-4df8-a395-d9bffef5ac93/ascreenshot_96462741186c46fca8caa33951b8c939_text_export.jpeg" alt="Крок 60"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">61</div><div class="step-titles"><div class="step-action">Клікніть на поле дати закриття</div><div class="step-desc">Клікніть на іконку календаря поля <strong>«Дата закриття»</strong>, щоб відкрити вибір дати.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/4dbaba21-6c57-4487-86cd-4f780f7184b2/ascreenshot_09914b3a1b184f2e8c1c24c1f01baa45_text_export.jpeg" alt="Крок 61"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">62</div><div class="step-titles"><div class="step-action">Оберіть дату «21»</div><div class="step-desc">У календарі клікніть на число <strong>«21»</strong>. Підтвердіть вибір натисканням «ОК».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/872eeb00-d78f-4db1-8fa3-4b87492fd8ef/ascreenshot_8501126508c4462aaaa5ec7e4ee3a580_text_export.jpeg" alt="Крок 62"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">63</div><div class="step-titles"><div class="step-action">Клікніть на поле «Причина закриття»</div><div class="step-desc">Клікніть на поле <strong>«Причина закриття»</strong> для відкриття списку стандартних причин.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/4b017656-f1f9-42d5-a92a-be297a3beef2/ascreenshot_c653819c9f95461a83fe7ed4d954b9ec_text_export.jpeg" alt="Крок 63"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">64</div><div class="step-titles"><div class="step-action">Оберіть причину закриття</div><div class="step-desc">Оберіть: <strong>«Загальна ціль кейс плану була досягнута, дитина застрахована від шкоди, піклування та благополуччя дитини підтримано, і немає додаткових занепокоєнь»</strong>. Інші варіанти: виповнилось 18 років, неможливість зв'язатись тощо.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/dc1038f6-8180-42de-a439-a7a1e58530ca/ascreenshot_5482ab5c6fee4a4aa17d9bfc06bed01f_text_export.jpeg" alt="Крок 64"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">65</div><div class="step-titles"><div class="step-action">Заповніть «Ситуація і стан дитини на момент закриття справи»</div><div class="step-desc">Введіть детальний опис: умови проживання, стан здоров'я, освіта, соціальні зв'язки, чи отримує дитина необхідні послуги, прогноз на майбутнє.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/774444fb-c242-493d-b068-689d35f3cdc2/ascreenshot_96b3111ab9df4300b85222879263328b_text_export.jpeg" alt="Крок 65"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">66</div><div class="step-titles"><div class="step-action">Вставте текст (Cmd+V)</div><div class="step-desc">Натисніть <strong>Cmd+V / Ctrl+V</strong> для вставки підготовленого тексту у відповідне поле.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/c6748d57-3b75-415d-b8b6-3aec46006c18/ascreenshot_21e80fe9a7d84a799e61408544e82de5_text_export.jpeg" alt="Крок 66"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">67</div><div class="step-titles"><div class="step-action">Вставте текст (Cmd+V) — продовження</div><div class="step-desc">Доповніть текст у наступному полі. Поле «Коментарі менеджера» призначено для нотаток супервайзера щодо якості ведення справи.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/898c2b5d-5c41-4c05-b850-f0c4b8bc98a2/ascreenshot_4f44d92e87bd4a268289c84916de92cc_text_export.jpeg" alt="Крок 67"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">68</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти»</div><div class="step-desc">Натисніть <strong>«✓ Зберегти»</strong> для збереження всіх даних деталей закриття.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/19840fdc-e834-43af-90ca-42ef2b000bea/ascreenshot_f36ff4a953dd4b33a3d4229f4acc5837_text_export.jpeg" alt="Крок 68"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">69</div><div class="step-titles"><div class="step-action">Оберіть «Запросити ухвалення»</div><div class="step-desc">Натисніть <strong>«⋮»</strong> (три крапки) → «Запросити ухвалення». Без погодження супервайзера кейс не може бути офіційно закритий.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/94cd44b9-edef-4bb8-b1c2-63f1a26c41fd/ascreenshot_4dd97be138064501bafafc019e419c15_text_export.jpeg" alt="Крок 69"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">70</div><div class="step-titles"><div class="step-action">Оберіть «Case Plan»</div><div class="step-desc">У вікні «Запросити ухвалення для» клікніть на поле та оберіть <strong>«Case Plan»</strong>.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/87ff4be9-c04e-49ac-809b-d426c8877955/ascreenshot_e695ca68be4543cdaad1323efe75b6ec_text_export.jpeg" alt="Крок 70"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">71</div><div class="step-titles"><div class="step-action">Оберіть «Closure»</div><div class="step-desc">У розкритому списку оберіть <strong>«Closure»</strong> — запит на погодження закриття справи, а не загального плану.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/bf5b41c2-c530-420e-af84-c118e91d9914/ascreenshot_8b21761dbe23474c9fc141ece99304d8_text_export.jpeg" alt="Крок 71"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">72</div><div class="step-titles"><div class="step-action">Натисніть «ОК»</div><div class="step-desc">Натисніть <strong>«✓ ОК»</strong>. Статус зміниться на «Очікується ухвалення Деталі закриття».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6bb7c3bf-2718-410f-a8ce-3bf8f3ed2305/ascreenshot_cc9d5d62807d415ca31d49538e77e545_text_export.jpeg" alt="Крок 72"/></div></div>
+
+<!-- ===== SECTION 8 - INCIDENT ===== -->
+<div class="section-header blue" id="s8"><span class="num">8б</span> СТВОРЕННЯ ІНЦИДЕНТУ</div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">73</div><div class="step-titles"><div class="step-action">Оберіть «Створити інцидент»</div><div class="step-desc">У меню дій (кнопка «⋮») клікніть <strong>«Створити інцидент»</strong>. Дозволяє зафіксувати конкретний інцидент (насильство, жорстоке поводження тощо), прив'язаний до кейсу дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/9114067d-14a5-4d28-b1f9-73e9cece7a4a/ascreenshot_77fbf2accd5b4e968103db3e6be1dd21_text_export.jpeg" alt="Крок 73"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">74</div><div class="step-titles"><div class="step-action">Заповніть поле дати інциденту</div><div class="step-desc">Заповніть <strong>«Дата інциденту»</strong> та «Як виявлено випадок» — оберіть спосіб виявлення зі списку (наприклад: «Розкриття / скарга особи, яка стала жертвою насильства»).</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/db166282-92d1-44b7-a82c-411af7250458/ascreenshot_65720fc19f494aeba9fa7415c516701f_text_export.jpeg" alt="Крок 74"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">75</div><div class="step-titles"><div class="step-action">Заповніть поле «Якщо так, опишіть»</div><div class="step-desc">Якщо були попередні випадки кривдження — введіть детальний опис: коли відбувались, якого характеру, чи вживались заходи реагування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/4389838d-0017-4681-986f-ebe2ab3a14f0/ascreenshot_486a008fcb8b45fda1fc068851c943ff_text_export.jpeg" alt="Крок 75"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">76</div><div class="step-titles"><div class="step-action">Перейдіть до «Інформація про кривдника»</div><div class="step-desc">Клікніть на підрозділ <strong>«Інформація про кривдника»</strong>. Вкажіть: ПІБ, стать, вік, ідентифікаційні дані, соціальний статус, рід занять, стосунки з дитиною.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/240c7b5d-0748-459d-a99e-9b60b36cff2d/ascreenshot_c66b809357b44ddd8182630cf1d5f784_text_export.jpeg" alt="Крок 76"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">77</div><div class="step-titles"><div class="step-action">Заповніть поле «ПІБ»</div><div class="step-desc">Введіть <strong>ПІБ кривдника</strong>. Також заповніть: «Стать», «Вік», «Національний ідентифікаційний номер», «Тип документу», «Соціальний статус», «Рід занять».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6ed8ef75-8e84-4832-b8e1-ca20f4b88447/ascreenshot_a9eb50fd3a3b4d80acdd82c50ef18301_text_export.jpeg" alt="Крок 77"/></div></div>
+
+<div class="step blue"><div class="step-header"><div class="step-badge blue">78</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти і повернутись»</div><div class="step-desc">Після заповнення всіх даних натисніть <strong>«✎ Зберегти і повернутись»</strong>. Система збереже інцидент та поверне вас до головної форми кейсу.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/2a86b79c-d4ab-4cca-a86e-51d6adcf98a7/ascreenshot_3944d6a18789499191cfc11795f2eabf_text_export.jpeg" alt="Крок 78"/></div></div>
+
+<!-- ===== SECTION 9 - PROJECT COORDINATOR ===== -->
+<div class="section-header teal" id="s9"><span class="num">9</span> РОЛЬ: ПРОЄКТНИЙ КООРДИНАТОР ПАРТНЕРСЬКОЇ ОРГАНІЗАЦІЇ (КРОКИ 79–92)</div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">79</div><div class="step-titles"><div class="step-action">Увійдіть в систему з паролем</div><div class="step-desc">Введіть логін і пароль проєктного координатора партнерської організації у поле <strong>«Пароль *»</strong>. Кожна роль має окремий обліковий запис з різними правами доступу — координатор бачить лише направлені йому кейси.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7962122c-2a22-4e0f-a8da-89afd2b1f6a8/ascreenshot_9ee92db2178645d6b5e2a43fa626251c_text_export.jpeg" alt="Крок 79"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">80</div><div class="step-titles"><div class="step-action">Перейдіть до списку кейсів</div><div class="step-desc">Після входу клікніть на іконку або розділ списку кейсів. Ви побачите лише ті кейси, до яких вам надано доступ — зазвичай направлені у вашу організацію.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/c945f867-9f92-4abd-8183-5d99d68b9eac/ascreenshot_184c74609213480c869550cd40276b89_text_export.jpeg" alt="Крок 80"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">81</div><div class="step-titles"><div class="step-action">Відкрийте кейс «432564b»</div><div class="step-desc">Знайдіть у списку та клікніть на кейс з ідентифікатором <strong>«432564b»</strong> — це кейс, який було направлено у вашу організацію для надання послуг. Ідентифікатор кейсу є унікальним і формується системою автоматично.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/0361267d-4799-4d3d-8af1-76069cf4f86c/ascreenshot_844ff5dce555449884801e9b1c123b0e_text_export.jpeg" alt="Крок 81"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">82</div><div class="step-titles"><div class="step-action">Перейдіть до розділу «Запис інформації»</div><div class="step-desc">Клікніть на розділ <strong>«Запис інформації»</strong> у верхній навігації кейсу. Цей розділ надає доступ до всіх вкладок, включаючи скерування на послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/fc135fbf-2d05-42ed-8968-1cde6423fcf5/ascreenshot_12c5cbe2158349858d5de39c052fe939_text_export.jpeg" alt="Крок 82"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">83</div><div class="step-titles"><div class="step-action">Перейдіть до «Скерування на послуги»</div><div class="step-desc">Клікніть на вкладку <strong>«Скерування на послуги»</strong>. Тут відображаються всі направлення, що надійшли у вашу організацію від Координаційного Центру — їх необхідно переглянути та обробити.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/207ad0b5-8d0d-425b-ae41-ca098cc6a537/ascreenshot_7a5cbd883b2a4eeaa9a6a9016addd7cf_text_export.jpeg" alt="Крок 83"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">84</div><div class="step-titles"><div class="step-action">Відкрийте деталі направлення</div><div class="step-desc">Клікніть на рядок направлення або відповідну іконку, щоб переглянути повні деталі: тип послуги, організацію-відправника, дату направлення, нотатки та поточний статус.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/333a0131-e97a-4f48-a712-ac42b1e0382e/ascreenshot_48533b29b4bc46c78ee2fb6704397912_text_export.jpeg" alt="Крок 84"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">85</div><div class="step-titles"><div class="step-action">Клікніть на іконку деталей направлення</div><div class="step-desc">Натисніть на іконку (стрілка або лупа) у рядку направлення для переходу до форми прийняття або відхилення. Саме тут можна прийняти або відхилити скерування на послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/205232be-4c7d-4c3b-804a-791eb80f6b85/ascreenshot_19a8a97baaac4f218dea29e246e5f9b6_text_export.jpeg" alt="Крок 85"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">86</div><div class="step-titles"><div class="step-action">Натисніть «Прийняти»</div><div class="step-desc">Перевірте деталі направлення. Якщо воно відповідає можливостям вашої організації — натисніть <strong>«Прийняти»</strong>. Якщо направлення помилкове або ваша організація не може надати цю послугу — натисніть «Відхилити» та вкажіть причину. Після прийняття статус направлення зміниться.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/22487a3e-d60c-469d-ad73-8b225415381e/ascreenshot_6d1d87f318d84c35ac7fe2671a04ca34_text_export.jpeg" alt="Крок 86"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">87</div><div class="step-titles"><div class="step-action">Підтвердіть — натисніть «ОК»</div><div class="step-desc">У діалоговому вікні підтвердження натисніть <strong>«✓ ОК»</strong>. Система зафіксує ваше рішення та оновить статус направлення.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/2fb8df71-2b2b-4eaa-b4c0-dad97c61c5e3/ascreenshot_0a47ef90737240d0bff3b52827f721bb_text_export.jpeg" alt="Крок 87"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">88</div><div class="step-titles"><div class="step-action">Натисніть «Перенаправити Кейс»</div><div class="step-desc">Наступний крок — перенаправити кейс на відповідального кейс-менеджера, особа якого заздалегідь ухвалена поза межами системи. Натисніть кнопку <strong>«Перенаправити Кейс»</strong>. Відкриється форма вибору отримувача.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6521d29c-8d60-4157-8fd3-45e8123edb89/ascreenshot_f5ceb080123a40239120e4d6b0222cb1_text_export.jpeg" alt="Крок 88"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">89</div><div class="step-titles"><div class="step-action">Клікніть на поле «Отримувач *»</div><div class="step-desc">Клікніть на поле <strong>«Отримувач *»</strong> для відкриття списку доступних кейс-менеджерів вашої організації. Знайдіть потрібну особу за ім'ям або ролью.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/a39612d9-9131-4925-b2fc-1873adfa9688/ascreenshot_34c8a1c8fc864172a81d46bc5965f585_text_export.jpeg" alt="Крок 89"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">90</div><div class="step-titles"><div class="step-action">Оберіть кейс-менеджера «r-pos-cw»</div><div class="step-desc">Виберіть профіль відповідного кейс-менеджера зі списку — клікніть на <strong>«r-pos-cw»</strong> (або відповідний профіль). Переконайтесь, що обрано правильну особу перед підтвердженням.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/792bee4d-4a03-411d-8903-46d41c1af665/ascreenshot_09f74bf17a1943ffbd50944d7523c075_text_export.jpeg" alt="Крок 90"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">91</div><div class="step-titles"><div class="step-action">Натисніть «Перенаправити»</div><div class="step-desc">Натисніть кнопку <strong>«Перенаправити»</strong> для підтвердження передачі кейсу обраному кейс-менеджеру. Система зафіксує передачу та сповістить отримувача.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/76ad533e-896c-445c-914b-7355e3d828e4/ascreenshot_635780c1ad1846d0a88cf1eca04d4371_text_export.jpeg" alt="Крок 91"/></div></div>
+
+<div class="step teal"><div class="step-header"><div class="step-badge teal">92</div><div class="step-titles"><div class="step-action">Перевірте статус — «Очікує»</div><div class="step-desc">Після перенаправлення ви побачите статус <strong>«Очікує»</strong> у рядку кейсу або направлення. Це означає, що кейс-менеджер ще не прийняв кейс. Після прийняття статус оновиться автоматично.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7fd3c5c9-aff5-4284-a8aa-f61b3096a07a/ascreenshot_d8ac9219c2c94adfa1d6a29b48ccb274_text_export.jpeg" alt="Крок 92"/></div></div>
+
+<!-- ===== SECTION 10 - CASE MANAGER PARTNER ORG ===== -->
+<div class="section-header purple" id="s10"><span class="num">10</span> РОЛЬ: КЕЙС-МЕНЕДЖЕР ПАРТНЕРСЬКОЇ ОРГАНІЗАЦІЇ (КРОКИ 93–115)</div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">93</div><div class="step-titles"><div class="step-action">Увійдіть в систему</div><div class="step-desc">Увійдіть в систему як кейс-менеджер партнерської організації — використовуйте власні облікові дані (логін та пароль). Ваші права доступу обмежені кейсами, що направлені безпосередньо вам.</div></div></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">94</div><div class="step-titles"><div class="step-action">Перейдіть до списку кейсів</div><div class="step-desc">Клікніть на іконку або розділ списку кейсів. Вгорі списку ви побачите найновіші кейси, до яких ви маєте доступ.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/790529c7-187b-4732-a894-724f3521d7bd/ascreenshot_2d919c327bec42d69c4f6991838082c0_text_export.jpeg" alt="Крок 94"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">95</div><div class="step-titles"><div class="step-action">Відкрийте кейс «Карпенко Оксана Андріївна»</div><div class="step-desc">Вгорі списку ви побачите найновіші кейси, до яких ви маєте доступ. Клікніть на <strong>«Карпенко Оксана Андріївна»</strong> — кейс, що був перенаправлений вам проєктним координатором.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/5fb7ba99-fccd-4570-b381-fc9d42e1c6b6/ascreenshot_21d874535313469a90e335225915786d_text_export.jpeg" alt="Крок 95"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">96</div><div class="step-titles"><div class="step-action">Перейдіть до «Запис інформації»</div><div class="step-desc">Клікніть на розділ <strong>«Запис інформації»</strong> у верхній навігації кейсу.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/69ff2676-639f-4dd0-b600-0d9b353fcb3d/ascreenshot_4b4722ccce454b27baa4fbe305728a3c_text_export.jpeg" alt="Крок 96"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">97</div><div class="step-titles"><div class="step-action">Перейдіть до «Скерування на послуги»</div><div class="step-desc">Клікніть на вкладку <strong>«Скерування на послуги»</strong>. Тут відображається вхідне скерування від проєктного координатора.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/c7c11895-eebc-469e-8f03-add74e344742/ascreenshot_cfb0eafc5457439197693233389cbc2b_text_export.jpeg" alt="Крок 97"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">98</div><div class="step-titles"><div class="step-action">Перевірте вхідне скерування</div><div class="step-desc">Першим кроком вам необхідно <strong>прийняти скерування</strong>. Перегляньте деталі направлення — тип послуги, організацію-відправника, нотатки. Переконайтесь, що направлення відповідає вашій ролі.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6a46e13d-a241-4a2e-a363-3272bdd6b47d/ascreenshot_d67003074f214347b2db7358c8f4316a_text_export.jpeg" alt="Крок 98"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">99</div><div class="step-titles"><div class="step-action">Натисніть «Прийняти»</div><div class="step-desc">Натисніть кнопку <strong>«Прийняти»</strong> для підтвердження отримання кейсу. Якщо направлення помилкове — натисніть «Відхилити» та вкажіть причину.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1f4c9239-f028-42ff-b415-8fdd75d3456c/ascreenshot_bce87bbb83674dac8847787da1e8f524_text_export.jpeg" alt="Крок 99"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">100</div><div class="step-titles"><div class="step-action">Натисніть «ОК»</div><div class="step-desc">У діалоговому вікні підтвердження натисніть <strong>«✓ ОК»</strong>. Кейс прийнято, тепер ви є відповідальним кейс-менеджером.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/e8ae1297-2e5e-4d91-83cf-15ff725a180d/ascreenshot_ca1d4ff43bbe4412bda50f972056081d_text_export.jpeg" alt="Крок 100"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">101</div><div class="step-titles"><div class="step-action">Поверніться до головної сторінки кейсу</div><div class="step-desc">Натисніть відповідну іконку або навігаційну кнопку для повернення до перегляду кейсу. Тепер ви маєте доступ до всіх розділів, видимих для кейс-менеджера.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/37f890ef-f251-4847-84df-5bfc91501feb/ascreenshot_9989e194e2a54991bc466213809f9539_text_export.jpeg" alt="Крок 101"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">102</div><div class="step-titles"><div class="step-action">Перейдіть до «Надання послуги та моніторинг»</div><div class="step-desc">Клікніть на розділ <strong>«Надання послуги та моніторинг»</strong> у лівому меню. Тут ви будете фіксувати всі надані послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3a3eaa06-bb55-4c0f-9cf2-a054da2872fd/ascreenshot_ecdc0763b14e42c78636d2c19e6a0412_text_export.jpeg" alt="Крок 102"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">103</div><div class="step-titles"><div class="step-action">Перейдіть до «Супровід надавачами послуг»</div><div class="step-desc">Клікніть на підрозділ <strong>«Супровід надавачами послуг»</strong>. Саме тут кейс-менеджер партнерської організації фіксує послуги, що фактично надаються дитині.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1b07d3f9-5084-4263-a45c-36cd6850b680/ascreenshot_69f74aa5896945918e9c6a160909f128_text_export.jpeg" alt="Крок 103"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">104</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати»</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong> для переходу в режим редагування підрозділу «Супровід надавачами послуг».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/605ad58f-dd49-44f0-a25b-5458f51f4b44/ascreenshot_2790bdb996c3441db6d3c66eec55aada_text_export.jpeg" alt="Крок 104"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">105</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати» у блоці послуг</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong> безпосередньо у блоці «Послуги, що надаються», щоб додати нові записи про надані послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8a809c66-dfe1-4a2a-b9b9-7992613c0f24/ascreenshot_b5f1b67319d3416696ea630769f20bbb_text_export.jpeg" alt="Крок 105"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">106</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати»</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> для додавання нового запису про надану послугу. Відкриється форма з полями для заповнення.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/261f645f-d3e2-4f94-80be-cc146e5e36a1/ascreenshot_71186261e7cc47cb90bc9d19939b6622_text_export.jpeg" alt="Крок 106"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">107</div><div class="step-titles"><div class="step-action">Клікніть на поле «Послуги, що надаються»</div><div class="step-desc">Клікніть на поле <strong>«Послуги, що надаються»</strong> для відкриття класифікатора послуг. Оберіть відповідну категорію послуги зі списку.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/c8a22204-0029-4902-8b2f-da90d188a9ae/ascreenshot_4b5830fb96594022b306a2361342ec86_text_export.jpeg" alt="Крок 107"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">108</div><div class="step-titles"><div class="step-action">Оберіть «Гаджет»</div><div class="step-desc">У списку послуг оберіть категорію <strong>«Гаджет»</strong> (або іншу відповідну). У цьому прикладі реєструється надання технічного засобу — ноутбука для дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/2e59ab5c-758f-4196-9b08-5c2727f5ab2b/ascreenshot_c6a1431e56ab46eab04790b94154ee4f_text_export.jpeg" alt="Крок 108"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">109</div><div class="step-titles"><div class="step-action">Клікніть на іконку календаря для дати надання</div><div class="step-desc">Клікніть на іконку календаря у полі «Дата надання послуги», щоб встановити дату фактичного надання послуги дитині.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/bdd3e32b-b7e3-450d-89c7-3aea38cff95e/ascreenshot_603cdac019574a70b6c6b909588531ae_text_export.jpeg" alt="Крок 109"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">110</div><div class="step-titles"><div class="step-action">Оберіть дату «20»</div><div class="step-desc">У календарі клікніть на число <strong>«20»</strong> для встановлення дати надання послуги. Підтвердіть вибір натисканням «ОК».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/252d3109-8789-4c38-8d8a-bd2cc4645410/ascreenshot_bf2e23b328964fbfa0172ec7126fac53_text_export.jpeg" alt="Крок 110"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">111</div><div class="step-titles"><div class="step-action">Введіть опис наданої послуги</div><div class="step-desc">У полі «Нотатки» або «Опис» введіть конкретну інформацію про надану послугу. Наприклад: <strong>«Надано ноутбук Lenovo xs14pk1002»</strong>. Бажано вказати серійний номер або інші ідентифікаційні дані.</div></div></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">112</div><div class="step-titles"><div class="step-action">Натисніть «Додати»</div><div class="step-desc">Натисніть <strong>«✓ Додати»</strong> для збереження запису про надану послугу. Запис з'явиться у списку наданих послуг.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/e2da711d-24cd-4e60-8696-276f2b8cbe57/ascreenshot_21857092e773466398dbe137f8d5238b_text_export.jpeg" alt="Крок 112"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">113</div><div class="step-titles"><div class="step-action">Додайте всі послуги таким самим чином</div><div class="step-desc">Повторіть кроки 106–112 для кожної наданої послуги. Додайте всі послуги, що надаються в рамках вашого скерування. Після додавання всіх записів ви побачите повний перелік наданих послуг у таблиці.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/33da2964-2b1b-41d9-8ba8-15cc0e8e2bf2/ascreenshot_82b0b8b3feda494da61b64504a400968_text_export.jpeg" alt="Крок 113"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">114</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти»</div><div class="step-desc">Натисніть <strong>«✓ Зберегти»</strong> у верхньому правому куті для збереження всіх записів наданих послуг.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/400f6e36-17e6-49e7-a17f-335f9ff61cfa/ascreenshot_232d5f4fd63843ba8eaa3a4a0ab4948f_text_export.jpeg" alt="Крок 114"/></div></div>
+
+<div class="step purple"><div class="step-header"><div class="step-badge purple">115</div><div class="step-titles"><div class="step-action">Поверніться до списку кейсів</div><div class="step-desc">Натисніть відповідну іконку або кнопку навігації для повернення до загального списку кейсів. Записи про надані послуги збережено та відображаються у профілі дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/36cdba52-0917-4a40-bd5e-bbbf8f8ad465/ascreenshot_497861917d8d46a98b8dbb14956dd995_text_export.jpeg" alt="Крок 115"/></div></div>
+
+<!-- ===== SECTION 11 - REINTEGRATION ===== -->
+<div class="section-header orange" id="s11"><span class="num">11</span> РОЛЬ: КЕЙС-МЕНЕДЖЕР УМПД / СУБГАРАНТЕР — ПРОЄКТ РЕІНТЕГРАЦІЇ (КРОКИ 116–150)</div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">116</div><div class="step-titles"><div class="step-action">Увійдіть в систему</div><div class="step-desc">Увійдіть в систему використовуючи власні дані входу кейс-менеджера УМПД або субгарантера. Ваша роль має специфічні права доступу до кейсів у рамках Проєкту Реінтеграції.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/669f385d-751c-4be3-8c48-4a1a22c0f098/ascreenshot_2029355c269e4e1db252b87da32f26c8_text_export.jpeg" alt="Крок 116"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">117</div><div class="step-titles"><div class="step-action">Перейдіть до списку кейсів</div><div class="step-desc">Клікніть на іконку списку кейсів. Вам відображаються лише ті кейси, що направлені в рамках Проєкту Реінтеграції.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7e684245-ac86-4ab1-bd03-af2755d8cdec/ascreenshot_3ed2feae2a3e4cedbac60d30ba2af7f6_text_export.jpeg" alt="Крок 117"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">118</div><div class="step-titles"><div class="step-action">Відкрийте кейс «Карпенко Оксана Андріївна»</div><div class="step-desc">Знайдіть і клікніть на кейс <strong>«Карпенко Оксана Андріївна»</strong> у списку. Це той самий кейс, що проходить через повний цикл обслуговування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/16d1d83f-ed3d-45ea-b938-6ec664491e16/ascreenshot_18fe7d1a56f54e3299b41a3ea0ab563b_text_export.jpeg" alt="Крок 118"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">119</div><div class="step-titles"><div class="step-action">Перейдіть до «Запис інформації»</div><div class="step-desc">Клікніть на <strong>«Запис інформації»</strong> у верхній навігації кейсу.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/e8e0ede5-8c0d-404f-a719-9870a1463ce7/ascreenshot_57e1ec504bc24bf18ce227470d0ee0be_text_export.jpeg" alt="Крок 119"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">120</div><div class="step-titles"><div class="step-action">Перейдіть до «Скерування на послуги»</div><div class="step-desc">Клікніть на вкладку <strong>«Скерування на послуги»</strong>. Тут відображається вхідний запит на надання послуг у рамках Проєкту Реінтеграції.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/b69beb48-8c99-4302-b22f-3a22af1132d4/ascreenshot_31f909a555474a068e157bccdb837a1d_text_export.jpeg" alt="Крок 120"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">121</div><div class="step-titles"><div class="step-action">Клікніть на іконку направлення</div><div class="step-desc">Натисніть на іконку у рядку направлення для перегляду деталей вхідного скерування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7e1f0b92-a596-404d-ab3a-b8c5af9cc85f/ascreenshot_8f921186cf834899a83d5b60a30b324f_text_export.jpeg" alt="Крок 121"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">122</div><div class="step-titles"><div class="step-action">Відкрийте форму прийняття</div><div class="step-desc">Клікніть на відповідний елемент для відкриття форми прийняття/відхилення скерування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/15058406-38cc-4205-a13b-3e845ff46ca3/ascreenshot_21e1652d441e4b0c98f0e1d32a712ce1_text_export.jpeg" alt="Крок 122"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">123</div><div class="step-titles"><div class="step-action">Прийміть вхідний запит</div><div class="step-desc">В закладці «Скерування на послуги» вам необхідно прийняти вхідний запит. Натисніть <strong>«Прийняти»</strong>, якщо запит направлений вам коректно. Якщо запит був направлений вам помилково — ви можете відхилити його, натиснувши відповідну кнопку та вказавши причину.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1f7d0623-3017-42be-b568-f4506e98533f/ascreenshot_8a5f1fca6d964282a547430ef01dde57_text_export.jpeg" alt="Крок 123"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">124</div><div class="step-titles"><div class="step-action">Підтвердіть — натисніть «ОК»</div><div class="step-desc">У діалоговому вікні натисніть <strong>«✓ ОК»</strong> для підтвердження прийняття скерування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/53378374-47d9-4b45-ab37-e782be194f49/ascreenshot_5fcd2ff2857f416e8b7edcba42865d20_text_export.jpeg" alt="Крок 124"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">125</div><div class="step-titles"><div class="step-action">Поверніться до головної сторінки кейсу</div><div class="step-desc">Натисніть відповідну іконку або кнопку для повернення до перегляду кейсу.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/f3631c0f-03f1-44d0-9bfc-4004e9fdd945/ascreenshot_6d766341a52f4d96ab9b45626447f3d3_text_export.jpeg" alt="Крок 125"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">126</div><div class="step-titles"><div class="step-action">Перейдіть до списку модулів</div><div class="step-desc">Клікніть на відповідний елемент для переходу до списку доступних модулів або послуг. Тут ви знайдете розділи, специфічні для Проєкту Реінтеграції.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/696af33e-92b6-4cbc-8e49-5bef7ffc070c/ascreenshot_5eec3de3ccf54ca892e872bb20354f0f_text_export.jpeg" alt="Крок 126"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">127</div><div class="step-titles"><div class="step-action">Оберіть «Проект Реінтеграції»</div><div class="step-desc">Клікніть на розділ <strong>«Проект Реінтеграції»</strong> у списку доступних модулів. Цей розділ містить специфічні форми та поля для роботи в рамках програми реінтеграції дітей.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/5df18d15-7246-4cc8-a516-4c26aebbcace/ascreenshot_f70968968f9e4fb78f4e177ec3feea05_text_export.jpeg" alt="Крок 127"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">128</div><div class="step-titles"><div class="step-action">Натисніть «Оцінка потреб та планування послуг»</div><div class="step-desc">Клікніть на підрозділ <strong>«Оцінка потреб та планування послуг»</strong>. Тут проводиться детальна оцінка потреб дитини та планування конкретних послуг у рамках проєкту реінтеграції.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/cc44e845-a9f5-482e-a3b2-b2ee5791db6c/ascreenshot_ecbd1a5bad7f46b4b2566d7c06eeec2b_text_export.jpeg" alt="Крок 128"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">129</div><div class="step-titles"><div class="step-action">Натисніть «Редагувати»</div><div class="step-desc">Натисніть <strong>«✎ Редагувати»</strong> для переходу в режим редагування форми оцінки потреб.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/cf2d4193-1638-47e7-8ae3-b96d1137477a/ascreenshot_7181d807027c4f3890f1911746cae2b4_text_export.jpeg" alt="Крок 129"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">130</div><div class="step-titles"><div class="step-action">Оберіть дату оцінки — «21»</div><div class="step-desc">У календарі клікніть на число <strong>«21»</strong> для встановлення дати проведення оцінки потреб. Підтвердіть вибір натисканням «ОК».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3c55b565-2680-42af-b97f-225684a06db6/ascreenshot_8451a916207a446eb79085b8e742fe86_text_export.jpeg" alt="Крок 130"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">131</div><div class="step-titles"><div class="step-action">Оберіть «Середньостроковий» тип плану</div><div class="step-desc">У полі «Тип плану» або «Тривалість супроводу» оберіть <strong>«Середньостроковий»</strong>. Це визначає горизонт планування послуг — зазвичай від 3 до 6 місяців.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7362ee9f-f600-4d21-893b-1fb238fd2eeb/ascreenshot_c5dbf6448d9d47d0af4a1860520b828b_text_export.jpeg" alt="Крок 131"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">132</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати» для виявлених потреб</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> у блоці «Виявлені потреби в послугах» для додавання нової потреби дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/e7deb293-83e5-4218-a841-efe1a3273816/ascreenshot_dbc52ce097284877a16d0b7154c87b3b_text_export.jpeg" alt="Крок 132"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">133</div><div class="step-titles"><div class="step-action">Клікніть на поле «Виявлені потреби в послугах»</div><div class="step-desc">Клікніть на поле <strong>«Виявлені потреби в послугах (середньостроковий пакет)»</strong> для відкриття класифікатора потреб. Оберіть відповідну категорію зі списку.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/bc06d49b-eb1d-4af9-a0df-dc33083df8c5/ascreenshot_d8005b5edbd04ac58ac734a774fb9468_text_export.jpeg" alt="Крок 133"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">134</div><div class="step-titles"><div class="step-action">Оберіть «Оренда житла»</div><div class="step-desc">У списку потреб оберіть <strong>«Оренда житла»</strong> — одну з ключових послуг у рамках програми реінтеграції для сімей, що потребують сталого місця проживання.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/45a8daa1-9aad-4409-9eb1-5b1e3045410d/ascreenshot_c79e354913b54471b37d8f10273bbd6b_text_export.jpeg" alt="Крок 134"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">136</div><div class="step-titles"><div class="step-action">Заповніть «Відповідальні за виконання заходів»</div><div class="step-desc">Клікніть на поле <strong>«Відповідальні за виконання заходів / залучені спеціалісти»</strong>. Вкажіть ПІБ та роль спеціалістів або організацій, що відповідатимуть за надання виявлених послуг.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6b6bac14-db09-4069-8a10-917cf8283010/ascreenshot_b738351855eb4de09617e43100fbf662_text_export.jpeg" alt="Крок 136"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">137</div><div class="step-titles"><div class="step-action">Натисніть «Додати» (перший запис)</div><div class="step-desc">Натисніть <strong>«✓ Додати»</strong> для збереження першого запису виявленої потреби.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/dc622ed9-97cf-4422-b42f-45566f54f79d/ascreenshot_764caa6283f5433da430396dbb7448cd_text_export.jpeg" alt="Крок 137"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">138</div><div class="step-titles"><div class="step-action">Натисніть «Додати» (другий запис)</div><div class="step-desc">Повторіть процес для другої виявленої потреби — натисніть <strong>«+ Додати»</strong> та заповніть форму аналогічно попередньому кроку.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/1c7cf08b-1d89-49d3-bb89-b51e608b18bf/ascreenshot_175971034c254328a6ec03a676063f3d_text_export.jpeg" alt="Крок 138"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">139</div><div class="step-titles"><div class="step-action">Натисніть «Додати» (третій запис)</div><div class="step-desc">Повторіть для третьої потреби. Після додавання всіх виявлених потреб переходьте до блоку «Процес надання послуг».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/749afca1-c468-4936-973c-1ebf92b85e60/ascreenshot_0f69a3886243479c9fd9bbae8887feec_text_export.jpeg" alt="Крок 139"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">140</div><div class="step-titles"><div class="step-action">Ознайомтесь з блоком «Процес надання послуг»</div><div class="step-desc">Блок <strong>«Процес надання послуг»</strong> необхідний для фіксування послуг, що фактично надаватимуть та/або надались. Процес додавання таких послуг схожий з попереднім і відрізняється лише наявністю поля «Статус» надання послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8984e825-f7d7-4160-a652-cd787613ee44/ascreenshot_8e69e635310046f6a05391c82a1cc7c0_text_export.jpeg" alt="Крок 140"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">141</div><div class="step-titles"><div class="step-action">Оберіть тип послуги «Спеціальні медичні процедури»</div><div class="step-desc">У блоці «Процес надання послуг» оберіть <strong>«Спеціальні медичні процедури для дітей з інвалідністю, окуляри, лінзи тощо»</strong> або інший відповідний тип послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/43b5fad8-85a2-47a3-9fee-d0cb0bc61629/ascreenshot_67785ffe021b4bd487218234f85cae66_text_export.jpeg" alt="Крок 141"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">142</div><div class="step-titles"><div class="step-action">Клікніть на іконку календаря для дати</div><div class="step-desc">Клікніть на іконку календаря у полі «Дата надання послуги» для встановлення фактичної дати надання.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/7e3962e8-840f-4137-846b-69e99aaed967/ascreenshot_e724f1d5da634860a24e7398f3e0442f_text_export.jpeg" alt="Крок 142"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">143</div><div class="step-titles"><div class="step-action">Клікніть на поле «Статус надання послуги»</div><div class="step-desc">Клікніть на поле <strong>«Статус надання послуги»</strong> для відкриття списку статусів. Доступні варіанти: «Заплановано», «В процесі», «Надано», «Відмовлено». Оберіть відповідний статус для поточного стану послуги.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/de927b33-3c9f-42fd-9e99-b873345d9771/ascreenshot_4b6d1c2d24b143eabec294daf8057f81_text_export.jpeg" alt="Крок 143"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">144</div><div class="step-titles"><div class="step-action">Натисніть «Додати»</div><div class="step-desc">Після заповнення всіх полів у блоці «Процес надання послуг» натисніть <strong>«✓ Додати»</strong> для збереження запису.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/fa2d8ba1-61e8-4340-a5dc-5751e07b28d5/ascreenshot_8a1e346730314d9c9ef5b5ce49d168f8_text_export.jpeg" alt="Крок 144"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">145</div><div class="step-titles"><div class="step-action">Перейдіть до «Зміна терміну супроводу»</div><div class="step-desc">Клікніть на підрозділ <strong>«Зміна терміну супроводу»</strong>. Цей блок відповідає за процес, який відбувається при необхідності коригувати (подовжити або скоротити) термін супроводу дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/5aeadf99-b5e8-4de9-8890-33c7b25a1e5e/ascreenshot_b735fd7bb2b548aeae0df07b288aa87d_text_export.jpeg" alt="Крок 145"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">146</div><div class="step-titles"><div class="step-action">Ознайомтесь з блоком «Зміна терміну супроводу»</div><div class="step-desc">Блок полів <strong>«Зміна терміну супроводу»</strong> відповідає за процес, що відбувається при необхідності коригувати (подовжити/зменшити) термін супроводу. Тут фіксуються підстави для зміни та нові терміни.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/88707167-df8d-41e1-9dd4-47fd075233d2/ascreenshot_c56abbbb45864624884ca99dc5379630_text_export.jpeg" alt="Крок 146"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">147</div><div class="step-titles"><div class="step-action">Натисніть «+ Додати» для зміни терміну</div><div class="step-desc">Натисніть <strong>«+ Додати»</strong> для створення нового запису про зміну терміну супроводу. Заповніть: причина зміни, попередній термін, новий термін, обґрунтування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8710e693-9f58-494f-a386-2afced435db0/ascreenshot_ec789935f635483b9298768239f64a7e_text_export.jpeg" alt="Крок 147"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">148</div><div class="step-titles"><div class="step-action">Додайте нові послуги після зміни терміну</div><div class="step-desc">В цьому блоці ви можете додавати нові послуги, що стали актуальними вже після зміни терміну супроводу. Кроки додавання ідентичні попереднім формам — оберіть тип послуги, дату, статус та натисніть «Додати».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/6aefb7c5-d515-42ea-b4e1-697da07b5144/ascreenshot_9455b742a520413e86f1a1e41c0f6e4d_text_export.jpeg" alt="Крок 148"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">149</div><div class="step-titles"><div class="step-action">Поверніться до перегляду кейсу</div><div class="step-desc">Натисніть відповідну іконку або кнопку навігації для повернення до загального перегляду кейсу.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/4585ddf6-8adb-4cff-a1d7-8d5b30028dfe/ascreenshot_81072edd06354c13b104325a3168d5c8_text_export.jpeg" alt="Крок 149"/></div></div>
+
+<div class="step orange"><div class="step-header"><div class="step-badge orange">150</div><div class="step-titles"><div class="step-action">Натисніть «Зберегти»</div><div class="step-desc">Натисніть <strong>«✓ Зберегти»</strong> у верхньому правому куті для збереження всіх записів у розділі «Проект Реінтеграції».</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/d99000ab-24aa-497b-96ec-122f5c336a1a/ascreenshot_c6df32f624894cdeb3d2ac39331a4efa_text_export.jpeg" alt="Крок 150"/></div></div>
+
+<!-- ===== SECTION 12 - CLOSURE ===== -->
+<div class="section-header red" id="s12"><span class="num">12</span> ЗАКРИТТЯ РОБОТИ НАД КЕЙСОМ / ЗАКРИТТЯ СУПРОВОДУ (КРОКИ 151–156)</div>
+
+<div class="alert-box-red" style="margin: 0 0 20px 0;">
+  <h3>⚠️ Важливо!</h3>
+  <p>Працівники партнерських організацій, які отримують скерування на послуги, повинні обов'язково <strong>завершувати їх надання в системі Primero</strong>.</p>
+  <p>Після закриття кейс більше не відображається в системі організації та стає недоступним для всіх користувачів, які мали до нього доступ, окрім працівників Координаційного Центру, які створили анкету першочергово.</p>
+</div>
+
+<div class="step red"><div class="step-header"><div class="step-badge red">151</div><div class="step-titles"><div class="step-action">Перейдіть до «Запис інформації — Скерування на послуги»</div><div class="step-desc">Для закриття роботи над кейсом після закінчення терміну супроводу або завершення надання послуг перейдіть в розділ <strong>«Запис інформації»</strong> → <strong>«Скерування на послуги»</strong>.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/e5a91df3-fcab-4626-9372-e451569ebf48/ascreenshot_6908a8f1f99149ebb0408c32c85f8888_text_export.jpeg" alt="Крок 151"/></div></div>
+
+<div class="step red"><div class="step-header"><div class="step-badge red">152</div><div class="step-titles"><div class="step-action">Клікніть на «Скерування на послуги»</div><div class="step-desc">Клікніть на вкладку <strong>«Скерування на послуги»</strong> для переходу до списку активних скерувань. Знайдіть скерування, роботу над яким потрібно завершити.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/0ac0b414-7275-4fff-98bf-40c26a35eb32/ascreenshot_37087bfbb8804b2ab68b569732d7fc69_text_export.jpeg" alt="Крок 152"/></div></div>
+
+<div class="step red"><div class="step-header"><div class="step-badge red">153</div><div class="step-titles"><div class="step-action">Натисніть на меню — три крапки «⋮»</div><div class="step-desc">У рядку активного скерування натисніть кнопку <strong>«⋮»</strong> (три крапки) для відкриття меню дій. Серед опцій ви знайдете можливість завершити скерування.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/8331243f-9df7-4377-8cac-12515969a317/ascreenshot_8a0d3b3e58f04bd5a5ff3b288b1ce21e_text_export.jpeg" alt="Крок 153"/></div></div>
+
+<div class="step red"><div class="step-header"><div class="step-badge red">154</div><div class="step-titles"><div class="step-action">Натисніть «Готово»</div><div class="step-desc">У меню дій натисніть <strong>«Готово»</strong> для ініціювання процесу закриття роботи над скеруванням. Відкриється форма підтвердження закриття.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/365cc7d7-ecaa-4696-9ecc-6da4005bcbe2/ascreenshot_d178a19567814cdcae3b4eeaa4d766dd_text_export.jpeg" alt="Крок 154"/></div></div>
+
+<div class="step red"><div class="step-header"><div class="step-badge red">155</div><div class="step-titles"><div class="step-action">Додайте причину закриття</div><div class="step-desc">У формі підтвердження закриття додайте <strong>зрозумілу причину закриття роботи над кейсом</strong> — вона відображатиметься менеджерам Координаційного Центру. Будьте конкретними: вкажіть, які послуги надано, чи досягнуто цілей, яка поточна ситуація дитини.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/ecebae44-95b5-47a6-9688-79ec46d09883/ascreenshot_952fe16cfebc483893b8dc59fe708d86_text_export.jpeg" alt="Крок 155"/></div></div>
+
+<div class="step red"><div class="step-header"><div class="step-badge red">156</div><div class="step-titles"><div class="step-action">Натисніть «Готово»</div><div class="step-desc">Натисніть <strong>«Готово»</strong> для остаточного підтвердження закриття роботи над скеруванням. Після цього кейс більше не відображатиметься у вашому списку — він залишається доступним лише для менеджерів Координаційного Центру.</div></div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-21/3ebf6588-c823-4934-a113-2cf28b8445ed/ascreenshot_0ec2a2bf9d3a4031a874769ae851079f_text_export.jpeg" alt="Крок 156"/></div></div>
+
+</div><!-- end .content -->
+
+<button class="print-btn" onclick="window.print()">🖨️ Друк / PDF</button>
+
+</body>
+</html>
