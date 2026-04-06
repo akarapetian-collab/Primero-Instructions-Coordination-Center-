@@ -186,6 +186,9 @@
     <div class="toc-item"><div class="toc-dot" style="background:#c0392b"></div><a href="#s53">&nbsp;&nbsp;5.3 Інциденти та ризики (кроки 148–154)</a></div>
     <div class="toc-item"><div class="toc-dot" style="background:#c0392b"></div><a href="#s54">&nbsp;&nbsp;5.4 Налаштування сповіщень (кроки 155–156)</a></div>
     <div class="toc-item"><div class="toc-dot" style="background:#c0392b"></div><a href="#s55">&nbsp;&nbsp;5.5 Зміна паролю (кроки 157–160)</a></div>
+    <div class="toc-item"><div class="toc-dot" style="background:#2c3e50"></div><a href="#s6">6. Доступи та функції для різних типів користувачів</a></div>
+    <div class="toc-item"><div class="toc-dot" style="background:#2c3e50"></div><a href="#s61">&nbsp;&nbsp;6.1 Доступ до форм (Form Access)</a></div>
+    <div class="toc-item"><div class="toc-dot" style="background:#2c3e50"></div><a href="#s62">&nbsp;&nbsp;6.2 Функціональні дозволи (Functional Permissions)</a></div>
   </div>
 </div>
 
@@ -1157,4 +1160,146 @@
 <div class="step step-rd"><div class="step-header"><div class="step-badge bd-rd">160</div><div class="step-body">
   <div class="step-action">Підтвердіть та встановіть новий пароль</div>
   <div class="step-desc">Натисніть відповідну кнопку підтвердження. Після переходу за посиланням з email введіть і підтвердіть новий пароль. Пароль має бути надійним: мінімум 8 символів, з великими та малими літерами, цифрами.</div>
-</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-26/b303de00-b435-4fb2-b6dc-f8813ea5f39b/ascreenshot_edf408d4e34d4279b872654d61382048_text_export.jpeg" alt="Кр�
+</div></div>
+
+<div class="step step-rd"><div class="step-header"><div class="step-badge bd-rd">160</div><div class="step-body">
+  <div class="step-action">Підтвердіть та встановіть новий пароль</div>
+  <div class="step-desc">Натисніть відповідну кнопку підтвердження. Після переходу за посиланням з email введіть і підтвердіть новий пароль. Пароль має бути надійним: мінімум 8 символів, з великими та малими літерами, цифрами.</div>
+</div></div><div class="step-img"><img src="https://colony-recorder.s3.amazonaws.com/files/2026-03-26/b303de00-b435-4fb2-b6dc-f8813ea5f39b/ascreenshot_edf408d4e34d4279b872654d61382048_text_export.jpeg" alt="Крок 160"/></div></div>
+
+<!-- ═══════════════════════════════ РОЗДІЛ 6 ═══════════════════════════════ -->
+<div class="section-h1 sh-blue" id="s6" style="background: linear-gradient(90deg, #2c3e50, #1a252f);margin-top:36px;"><span class="sh-num">6</span> ДОСТУПИ ТА ФУНКЦІЇ ДЛЯ РІЗНИХ ТИПІВ КОРИСТУВАЧІВ</div>
+
+<div class="alert alert-info" style="margin-bottom:20px;">
+  <p>📌 У цьому розділі описано, які форми та дії доступні кожному типу користувача. Таблиці допоможуть швидко зрозуміти межі своїх прав. З питань розширення доступу звертайтесь до адміністратора: <a href="/cdn-cgi/l/email-protection#fc9d979d8e9d8c9988959d92bc9f949590989f9d8e99d2938e9bd2899d"><span class="__cf_email__" data-cfemail="64050f0516051401100d050a24070c0d0800070516014a0b16034a1105">[email&#160;protected]</span></a></p>
+</div>
+
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+  <span style="background:#1a6ea0;color:white;border-radius:20px;padding:4px 12px;font-size:0.8em;font-weight:600;">🔵 Супервайзер КЦ</span>
+  <span style="background:#0d6b5a;color:white;border-radius:20px;padding:4px 12px;font-size:0.8em;font-weight:600;">🟢 Представник КЦ</span>
+  <span style="background:#1e7e34;color:white;border-radius:20px;padding:4px 12px;font-size:0.8em;font-weight:600;">🟩 Координатор партнерів</span>
+  <span style="background:#b8560a;color:white;border-radius:20px;padding:4px 12px;font-size:0.8em;font-weight:600;">🟠 CP SP УМПД / субгарантери</span>
+  <span style="background:#6c3483;color:white;border-radius:20px;padding:4px 12px;font-size:0.8em;font-weight:600;">🟣 CP SP — Інші партнери</span>
+</div>
+
+<div class="section-h2 sh2-blue" id="s61" style="margin-top:0;">📄 6.1 Доступ до форм (Form Access)</div>
+
+<style>
+.ptable { width:100%; border-collapse:collapse; font-size:0.8em; background:white; border-radius:10px; overflow:hidden; box-shadow:0 1px 8px rgba(0,0,0,0.08); margin-bottom:28px; }
+.ptable th { padding:10px 8px; color:white; font-weight:600; text-align:center; border-right:1px solid rgba(255,255,255,0.15); }
+.ptable th.col-name { text-align:left; padding:10px 14px; min-width:200px; background:#1a3a5c; }
+.ptable th.c1 { background:#1a6ea0; }
+.ptable th.c2 { background:#0d6b5a; }
+.ptable th.c3 { background:#1e7e34; }
+.ptable th.c4 { background:#b8560a; }
+.ptable th.c5 { background:#6c3483; }
+.ptable td { padding:8px 8px; border-bottom:1px solid #e8eef4; text-align:center; vertical-align:middle; }
+.ptable td.col-name { text-align:left; padding:8px 14px; }
+.ptable td.col-name small { color:#888; font-size:0.85em; display:block; }
+.ptable tr:nth-child(even) { background:#f8fafc; }
+.ptable tr.group-header td { background:#dce9f5; color:#1a3a5c; font-weight:700; font-size:0.82em; text-align:left; padding:6px 14px; letter-spacing:0.04em; text-transform:uppercase; }
+.badge-se { background:#d5f0e8; color:#0d6b5a; border-radius:4px; padding:2px 7px; font-size:0.82em; white-space:nowrap; }
+.badge-s { background:#d6eaf8; color:#1a5276; border-radius:4px; padding:2px 7px; font-size:0.82em; white-space:nowrap; }
+.badge-h { background:#fde8d0; color:#7d3010; border-radius:4px; padding:2px 7px; font-size:0.82em; white-space:nowrap; }
+.ptable .yes { color:#1e7e34; font-size:1.1em; font-weight:700; }
+.ptable .no { color:#bbb; font-size:1em; }
+</style>
+
+<div style="overflow-x:auto;">
+<table class="ptable">
+  <thead>
+    <tr>
+      <th class="col-name">Форма</th>
+      <th class="c1">Супервайзер КЦ</th>
+      <th class="c2">Представник КЦ</th>
+      <th class="c3">Координатор партнерів</th>
+      <th class="c4">CP SP УМПД / субгарантери</th>
+      <th class="c5">CP SP Інші партнери</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="group-header"><td colspan="6">Основні дані кейсу</td></tr>
+    <tr><td class="col-name">Подробиці про дитину<small>Intake details</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Дані про батьків та законних представників<small>Information about family</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Інформація про стан здоров'я, інвалідність, житло<small>Health and Housing status</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Деталі оцінювання<small>Assessment details</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Надання термінової матеріально-побутової допомоги<small>Immediate provision</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Екстрене розміщення, тимчасове влаштування<small>Needs assessment</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+
+    <tr class="group-header"><td colspan="6">План та закриття</td></tr>
+    <tr><td class="col-name">Інформована згода дитини<small>Consent and Assent</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Індивідуальний план заходів<small>Case Plan</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Деталі закриття<small>Closure details</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+
+    <tr class="group-header"><td colspan="6">Нотатки, документи та медіа</td></tr>
+    <tr><td class="col-name">Нотатки<small>Notes</small></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+    <tr><td class="col-name">Інші документи<small>Other Documents</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+    <tr><td class="col-name">Фото та аудіо<small>Photos and Audio</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+    <tr><td class="col-name">Інциденти та виявлені ризики для дитини<small>Protection Concern Details</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+
+    <tr class="group-header"><td colspan="6">Моніторинг та надання послуг</td></tr>
+    <tr><td class="col-name">Моніторинг надання послуг<small>Follow Up</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-h">🚫 Приховано</span></td><td><span class="badge-h">🚫 Приховано</span></td><td><span class="badge-h">🚫 Приховано</span></td></tr>
+    <tr><td class="col-name">Формування потреб та направлення на послуги КЦ<small>Identifying Needs &amp; Referring to Svcs CC</small></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+    <tr><td class="col-name">Супровід надавачами послуг<small>Support: by Service Providers</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+    <tr><td class="col-name">Супровід КЦ: послуги поза системою<small>CC Support: Services Outside the System</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td></tr>
+    <tr><td class="col-name">Оцінка потреб та планування послуг (Реінтеграція)<small>Initial assessment and service planning</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+    <tr><td class="col-name">Зміна терміну супроводу<small>Support duration changes</small></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-s">👁 Перегляд</span></td><td><span class="badge-se">✏️ Перегляд + Редагування</span></td><td><span class="badge-s">👁 Перегляд</span></td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section-h2 sh2-blue" id="s62">⚙️ 6.2 Функціональні дозволи (Functional Permissions)</div>
+
+<div style="overflow-x:auto;">
+<table class="ptable">
+  <thead>
+    <tr>
+      <th class="col-name">Функція / Дозвіл</th>
+      <th class="c1">Супервайзер КЦ</th>
+      <th class="c2">Представник КЦ</th>
+      <th class="c3">Координатор партнерів</th>
+      <th class="c4">CP SP УМПД / субгарантери</th>
+      <th class="c5">CP SP Інші партнери</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="group-header"><td colspan="6">Кейси — Базові дії</td></tr>
+    <tr><td class="col-name">Перегляд</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+    <tr><td class="col-name">Створення</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Редагування</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Активація / Деактивація</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Експорт</td></tr>
+    <tr><td class="col-name">Excel (XLS) експорт</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Експорт фото (Photowall)</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Експорт PDF</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Кастомний експорт</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Ухвалення дій</td></tr>
+    <tr><td class="col-name">Запит на затвердження плану кейсу</td><td class="no">—</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Запит на затвердження закриття кейсу</td><td class="no">—</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Затвердження плану кейсу (Approve)</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Пошук та перегляд</td></tr>
+    <tr><td class="col-name">Пошук кейсів інших користувачів</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Короткий перегляд кейсів інших користувачів</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Фото в списку кейсів</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+    <tr><td class="col-name">Фільтр «Занепокоєння» в списку кейсів</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+    <tr><td class="col-name">Журнал змін (Change Log)</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Нотатки та сервіси</td></tr>
+    <tr><td class="col-name">Додавання нотаток до кейсу</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Скерування кейсу з підформи послуг</td><td class="no">—</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Призначення та передача</td></tr>
+    <tr><td class="col-name">Видалення інших призначених користувачів</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Перенаправлення (скерування)</td></tr>
+    <tr><td class="col-name">Перенаправлення (Referral)</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Отримання перенаправлення (Receive Referral)</td><td class="no">—</td><td class="no">—</td><td class="yes">✅</td><td class="yes">✅</td><td class="yes">✅</td></tr>
+    <tr><td class="col-name">Журнал доступу (Access Log)</td><td class="yes">✅</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+
+    <tr class="group-header"><td colspan="6">Кейси — Відкриття / Закриття</td></tr>
+    <tr><td class="col-name">Перевідкриття кейсу (Reopen)</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+    <tr><td class="col-name">Закриття кейсу (Close)</td><td class="yes">✅</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="no">—</td></tr>
+ 
